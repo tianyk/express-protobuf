@@ -1,0 +1,21 @@
+{
+  "name": "express-protobuf",
+  "version": "1.0.0",
+  "description": "express-protobuf",
+  "main": "index.js",
+  "repository": "tianyk/express-protobuf",
+  "author": "tyk <yongketian@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.2",
+    "protobufjs": "^6.0.1"
+  },
+  "files": [
+    "HISTORY.md",
+    "LICENSE",
+    "index.js"
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  }
+}

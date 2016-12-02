@@ -2,21 +2,15 @@ var _ = require('lodash');
 var protobuf = require('protobufjs');
 
 exports = module.exports = function (opts) {
-    console.log('proto: %s', opts.proto);
-
     if (!opts.proto) throw new Error('proto option required');
     if (!_.endsWith(opts.proto, 'json')) throw new Error('proto should be json format.');
 
-    var schema, root;
-    try {
-        schema = require(opts.proto);
-        console.log('schema: ', schema);
-        root = protobuf.Root.fromJSON(schema);
-    } catch (e) {
-        throw new Error('Can\'t load protocol file. [opts.proto: %s]', opts.proto);
-    }
+    var schema = require(opts.proto);
+    var root = protobuf.Root.fromJSON(schema);
 
-    function protobuf(structure, data) {
+    function _protobuf(structure, data) {
+        var res = this;
+
         if (arguments.length !== 2) throw new Error('invalid parameters. you need to provide two parameters. '
             + 'the first representative structure name and the second representative response data');
 
@@ -39,7 +33,7 @@ exports = module.exports = function (opts) {
                 return next();
             }
 
-            res.protobuf = protobuf;
+            res.protobuf = _protobuf;
             next();
         }
     }
